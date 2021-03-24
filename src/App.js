@@ -24,6 +24,10 @@ class App extends React.Component {
       Veggie: 3,
       Pepperoni: 0,
     },
+    likes: {
+      count: 0
+    }
+
   };
 
   addToBasket = (pizzaName) => {
@@ -39,10 +43,19 @@ class App extends React.Component {
   removeFromBasket = (pizzaName) => {
     this.setState(currState => {
       const newBasket = { ...currState.basket }
-      console.log(newBasket)
       newBasket[pizzaName] = 0;
       return {
         basket: newBasket
+      }
+    })
+  }
+
+  addLike = () => {
+    this.setState(currState => {
+      let newLikes = { ...currState.likes }
+      newLikes.count = newLikes.count + 1
+      return {
+        likes: newLikes
       }
     })
   }
@@ -50,15 +63,25 @@ class App extends React.Component {
     return (
       <div className="App">
         <Header name="Hannah" />
+        <Likes count={this.state.likes.count} addLike={this.addLike} />
         <Menu pizzas={this.state.pizzas} addToBasket={this.addToBasket} />
         <Basket basket={this.state.basket} removeFromBasket={this.removeFromBasket} />
-        <Likes count="0" />
       </div>
     );
   }
 }
 
 // Components
+const Likes = (props) => {
+  return (
+    <header>
+      <h2> {props.count} likes
+      <button onClick={() => props.addLike()} className="like-button" >👍</button>
+      </h2>
+    </header>
+  )
+}
+
 const Menu = (props) => {
   return (
     <ul className="menu-list">
@@ -107,12 +130,6 @@ const Header = (props) => {
   );
 };
 
-const Likes = (props) => {
-  return (
-    <header>
-      <h2> {props.count} likes<button className="like-button">👍</button></h2>
-    </header>
-  )
-}
+
 
 export default App;
