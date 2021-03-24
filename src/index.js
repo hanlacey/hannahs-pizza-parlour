@@ -1,17 +1,13 @@
-import React from 'react';
+// ES6 import - alternative module system to require / module.exports (CommonJS)
+// equivalent to const ReactDom = require('react-dom');
 import ReactDOM from 'react-dom';
-import './index.css';
 import App from './App';
-import reportWebVitals from './reportWebVitals';
+import './index.css';
 
-ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
-  document.getElementById('root')
-);
+// Components
+// Section of our website
+// 2 types of component - functional or class based
+// Conventions - Start with a capital letter
+// Rendered with self closing tags
 
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();
+ReactDOM.render(<App />, document.getElementById('root'));
